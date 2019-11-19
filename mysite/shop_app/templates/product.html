@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<div class="container">
+    <div class="row my-4" >
+        <div class="col-lg-6 ">
+            <div id="imgHolder">
+                <img src="" alt="" class="img-fluid bigimg" style="image-fluid">
+            </div>
+            <div class="row my-4" >
+                {% for Image in Images %}
+                <div class="col-lg-3 col-md-6  mb-4">
+                    <div class="card h-100 " id="gallery">
+                        <a href="{{ Image.img.url }}"><img class="card-img-top" src="{{Image.image_thumb.url}}"  alt=""></a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-6" id="add_to_cart">
+            <h3 class="text-centr">{{product.title}}</h3>
+            <h4 class="">{{product.price}}</h4>
+            <a href='' class="add_to_cart" data-slug="{{product.slug}}"><button class="btn btn-danger " >В корзину</button></a>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <p>{{ product.description}}</p>
+        </div>
+    </div>
+</div>
+
+{%endblock content%}

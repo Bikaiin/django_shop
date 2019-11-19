@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5 my_cart">
+    <h3>Ваш закакз</h3>
+    <table class="table text-center table-striped table-borderless">
+        <tr>
+            <td>товар</td>
+            <td>колличество</td>
+            <td>цена</td>
+
+
+        </tr>
+        {% for item in cart.items.all %}
+        <tr class="cart-item-{{item.product.id}}">
+            <td>{{item.product.title}} </td>
+            <td>{{item.product.price}} руб. * {{item.qty}}</td>
+            <td>{{item.item_total}} руб.</td>
+        </tr>
+        {% endfor %}
+        <tr class="cart-item-{{item.product.id}}">
+            <td></td>
+            <td><strong>Итого: </strong></td>
+            <td class="cart_total"><strong>{{cart.cart_total}} руб.</strong></td>
+        </tr>
+    </table>
+    <a href='{% url "create_order" %}' class="btn btn-primary float-right">Пререйти к доставке и оплате</a>
+</div>
+{% endblock content %}

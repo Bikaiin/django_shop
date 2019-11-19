@@ -1,0 +1,43 @@
+{% extends 'base.html'%}
+
+{%block content%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 my-4">
+
+            <div class="list-group">
+                <a href="/shop/all" class="list-group-item shadow">Все</a>
+                {% for category in Categories %}
+                <a href="{{category.get_absolute_url}}" class="list-group-item shadow">{{ category.title }}</a>
+
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <div class="col-lg-9">
+            <div class="row">
+                {% for product in Products %}
+                <div class="col-lg-4 col-md-6 mb-4 my-4">
+                    <div class="card h-100 shadow">
+                        <a href="{{product.get_absolute_url}}"><img class="card-img-top" src="{{product.image.url}}" alt="" "alt=""></a>
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title ">
+                                <a href="{{product.get_absolute_url}}">{{ product.title }}</a>
+                            </h4>
+                            <h5 class="text-right mt-auto">{{product.price}}</h6>
+                                {% if request.user.is_authenticated %}
+                            <a href="#" class="add_to_cart btn btn-secondary s" data-slug="{{product.slug}}">Добавить в корзину</a>
+                                {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

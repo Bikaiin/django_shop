@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+
+{%block content%}
+{%if cart.items.count > 0 %}
+<div class="container mt-5 my_cart">
+    <h3>Ваша корзина</h3>
+    <table class="table text-center ">
+        <tr>
+            <td>товар</td>
+            <td>колличество</td>
+            <td>цена</td>
+            <td></td>
+
+
+        </tr>
+        {% for item in cart.items.all %}
+        <tr class="cart-item-{{item.product.id}}">
+            <td>{{item.product.title}} </td>
+            <td>
+
+                <form action="" method="get">
+                    <label>{{item.product.price}} руб. * <input type="number" name="qty" value="{{item.qty}}" class="cart-item-qty" data-id="{{item.id}}" min="1"  style=" width: 50px;"> </label>
+                </form>
+
+
+            </td>
+            <td id="cart-item-total-{{item.id}}">{{item.item_total}} руб.</td>
+            <td><a href='' class="btn btn-danger remove_from_cart" data-id="{{item.product.id}}" data-slug="{{item.product.slug}}">Удалить</a> </td>
+        </tr>
+        {% endfor %}
+        <tr class="cart-item-{{item.product.id}}">
+            <td></td>
+            <td><strong>Итого: </strong></td>
+            <td id="cart_total"><strong>{{cart.cart_total}} руб.</strong></td>
+            <td></td>
+        </tr>
+    </table>
+    <a href='{% url "checkout" %}' class="btn btn-primary float-right">Оформить заказ</a>
+</div>
+
+<div class="container mt-5 d-none cart_empty">
+    <h3 class="text-center ">ваша корзина пуста</h3>
+</div>
+{% else %}
+<h3 class="text-center mt-5">ваша корзина пуста</h3>
+{% endif %}
+
+{% endblock content %}

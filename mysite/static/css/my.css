@@ -1,0 +1,14 @@
+nav-link{
+    border-bottom: .25rem solid red;
+}
+
+navbar{
+    padding: .25rem 0!important;
+    font-weight: 700!important;
+    color: rgba(255, 255, 255, .5)!important;
+    background-color: red!important;
+    border-bottom: .25rem solid red!important;
+}
+
+
+
